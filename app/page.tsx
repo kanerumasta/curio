@@ -90,6 +90,14 @@ function getAnswerMessage(correct: boolean, factId: string) {
   return messages[hash % messages.length];
 }
 
+function getRoundReaction(score: number) {
+  if (score === FACTS_PER_ROUND) return "You’re a champ! 🏆";
+  if (score >= 7) return "Look at that curious brain go! ✨";
+  if (score >= 4) return "Nice work. Your brain picked up a few new facts! 🙂";
+  if (score === 0) return "Oof, the facts won this round. Better luck next time! 🥲";
+  return "Uh-oh, a few facts got away. Better luck next round! 🙃";
+}
+
 function createFactOptionOrder(fact: Fact, recentPositions: number[]) {
   const count = fact.options.length;
   const recent = recentPositions.slice(-Math.min(2, count - 1));
@@ -419,7 +427,7 @@ export default function Home() {
           {showFacts && <section className="facts-section" aria-labelledby="facts-title">
             <div className="section-heading"><div><span className="section-kicker"><span className="live-dot" /> FACT SPARK</span><h2 id="facts-title">A little mystery to solve</h2></div><div className="fact-score-wrap"><span className="duration"><Icon name="clock" size={15} /> 1 min</span><span className="fact-score">{factProgress.roundCorrect}/{FACTS_PER_ROUND} this round</span>{factProgress.attempts > 0 && <span className="fact-lifetime-score">Lifetime {factProgress.correct}/{factProgress.attempts} · streak {factProgress.currentStreak} · best {factProgress.bestStreak}</span>}{factProgress.attempts > 0 && <button className="fact-reset-button" onClick={resetFactProgress}>Reset all-time</button>}</div></div>
             <article className="fact-card">
-              {factProgress.roundComplete ? <div className="fact-round-complete"><span className="section-kicker"><span className="live-dot" /> ROUND COMPLETE</span><h3>{factProgress.roundCorrect}/{FACTS_PER_ROUND}. Nicely wondered.</h3><p>Your score starts fresh next round. {factProgress.missedFactIds.length ? `${factProgress.missedFactIds.length} missed ${factProgress.missedFactIds.length === 1 ? "fact is" : "facts are"} saved for a later review.` : "You cleared every answer this round."}</p><button className="generate-button" onClick={startAnotherRound}><Icon name="shuffle" size={16}/> Start another round <span className="button-arrow"><Icon name="arrow" size={15}/></span></button></div> : <>
+              {factProgress.roundComplete ? <div className="fact-round-complete"><span className="section-kicker"><span className="live-dot" /> ROUND COMPLETE</span><h3>{getRoundReaction(factProgress.roundCorrect)}</h3><p><strong>{factProgress.roundCorrect}/{FACTS_PER_ROUND} correct.</strong> {factProgress.missedFactIds.length ? `${factProgress.missedFactIds.length} missed ${factProgress.missedFactIds.length === 1 ? "fact is" : "facts are"} saved for a later review.` : "You cleared every answer this round."}</p><button className="generate-button" onClick={startAnotherRound}><Icon name="shuffle" size={16}/> Start another round <span className="button-arrow"><Icon name="arrow" size={15}/></span></button></div> : <>
                 <div className="fact-card-top"><span className="category-pill"><span className="pill-dot"/>{currentFact.category}</span><span className="fact-counter">Question {factProgress.roundQuestionNumber} of {FACTS_PER_ROUND}</span></div>
                 <div className="fact-round-track" role="progressbar" aria-label="Round progress" aria-valuemin={0} aria-valuemax={FACTS_PER_ROUND} aria-valuenow={factProgress.roundQuestionNumber}><span style={{ width: `${(factProgress.roundQuestionNumber / FACTS_PER_ROUND) * 100}%` }} /></div>
                 <h3 className="fact-question">{currentFact.question}</h3>
