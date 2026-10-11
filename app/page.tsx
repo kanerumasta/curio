@@ -5,7 +5,8 @@ import topicBank from "../daily_curiosity_topics.json";
 import factBank from "../daily_curiosity_facts.json";
 
 type Topic = (typeof topicBank.topics)[number];
-type Fact = (typeof factBank.facts)[number];
+type Fact = (typeof factBank.facts)[number] & { image?: { src: string; alt: string; credit: string; sourceUrl: string; license: string } };
+type FactProgress = { seenFactIds: string[]; attempts: number; correct: number; currentStreak: number; bestStreak: number; recentCorrectPositions: number[] };
 type IconName = "spark" | "shuffle" | "bookmark" | "search" | "arrow" | "sun" | "clock" | "copy" | "check" | "chevron" | "close" | "menu" | "all" | "heart";
 
 const iconPaths: Record<IconName, React.ReactNode> = {
@@ -37,13 +38,36 @@ function daySeed(date = new Date()) {
   return Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
 }
 
-function factOptionOrder(id: string, count: number) {
-  const order = Array.from({ length: count }, (_, index) => index);
-  let seed = id.split("").reduce((value, character) => (value * 31 + character.charCodeAt(0)) >>> 0, 7);
-  for (let index = order.length - 1; index > 0; index -= 1) {
-    seed = (seed * 1664525 + 1013904223) >>> 0;
-    const swapIndex = seed % (index + 1);
-    [order[index], order[swapIndex]] = [order[swapIndex], order[index]];
+function chooseUnseen<T extends { id: string }>(pool: T[], currentId: string, seenIds: string[]) {
+  if (!pool.length) return { item: undefined, seenIds };
+  const poolIds = new Set(pool.map((item) => item.id));
+  const seen = new Set(seenIds.filter((id) => poolIds.has(id)));
+  seen.add(currentId);
+  let choices = pool.filter((item) => !seen.has(item.id));
+  let nextSeen = seenIds;
+  if (!choices.length) {
+    nextSeen = seenIds.filter((id) => !poolIds.has(id));
+    choices = pool.filter((item) => item.id !== currentId);
+    if (!choices.length) choices = pool;
+  }
+  const item = choices[Math.floor(Math.random() * choices.length)];
+  return { item, seenIds: [...new Set([...nextSeen, currentId, item.id])] };
+}
+
+function createFactOptionOrder(fact: Fact, recentPositions: number[]) {
+  const count = fact.options.length;
+  const recent = recentPositions.slice(-Math.min(2, count - 1));
+  const availablePositions = Array.from({ length: count }, (_, index) => index).filter((position) => !recent.includes(position));
+  const correctPosition = availablePositions[Math.floor(Math.random() * availablePositions.length)];
+  const distractors = fact.options.map((_, index) => index).filter((index) => index !== fact.answerIndex);
+  for (let index = distractors.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [distractors[index], distractors[swapIndex]] = [distractors[swapIndex], distractors[index]];
+  }
+  const order: number[] = [];
+  let distractorIndex = 0;
+  for (let position = 0; position < count; position += 1) {
+    order.push(position === correctPosition ? fact.answerIndex : distractors[distractorIndex++]);
   }
   return order;
 }
@@ -63,6 +87,11 @@ export default function Home() {
   const [showFacts, setShowFacts] = useState(false);
   const [currentFact, setCurrentFact] = useState<Fact>(factBank.facts[daySeed() % factBank.facts.length]);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [topicHistory, setTopicHistory] = useState<string[]>([]);
+  const [topicHistoryLoaded, setTopicHistoryLoaded] = useState(false);
+  const [factProgress, setFactProgress] = useState<FactProgress>({ seenFactIds: [], attempts: 0, correct: 0, currentStreak: 0, bestStreak: 0, recentCorrectPositions: [] });
+  const [factProgressLoaded, setFactProgressLoaded] = useState(false);
+  const [orderedFactOptions, setOrderedFactOptions] = useState(() => Array.from({ length: currentFact.options.length }, (_, index) => index));
 
   useEffect(() => {
     try {
@@ -77,6 +106,72 @@ export default function Home() {
     if (savedLoaded) localStorage.setItem("curio-saved", JSON.stringify(savedIds));
   }, [savedIds, savedLoaded]);
 
+  useEffect(() => {
+    const validTopicIds = new Set(topicBank.topics.map((topic) => topic.id));
+    const validFactIds = new Set(factBank.facts.map((fact) => fact.id));
+    let storedTopics: string[] = [];
+    let storedFacts: FactProgress = { seenFactIds: [], attempts: 0, correct: 0, currentStreak: 0, bestStreak: 0, recentCorrectPositions: [] };
+    try {
+      const parsedTopics: unknown = JSON.parse(localStorage.getItem("curio-topic-history") || "[]");
+      if (Array.isArray(parsedTopics)) storedTopics = parsedTopics.filter((id): id is string => typeof id === "string" && validTopicIds.has(id));
+    } catch { storedTopics = []; }
+    try {
+      const parsed: unknown = JSON.parse(localStorage.getItem("curio-fact-progress") || "{}");
+      if (parsed && typeof parsed === "object") {
+        const value = parsed as Partial<FactProgress>;
+        storedFacts = {
+          seenFactIds: Array.isArray(value.seenFactIds) ? value.seenFactIds.filter((id): id is string => typeof id === "string" && validFactIds.has(id)) : [],
+          attempts: Number.isFinite(value.attempts) ? Math.max(0, Number(value.attempts)) : 0,
+          correct: Number.isFinite(value.correct) ? Math.max(0, Number(value.correct)) : 0,
+          currentStreak: Number.isFinite(value.currentStreak) ? Math.max(0, Number(value.currentStreak)) : 0,
+          bestStreak: Number.isFinite(value.bestStreak) ? Math.max(0, Number(value.bestStreak)) : 0,
+          recentCorrectPositions: Array.isArray(value.recentCorrectPositions) ? value.recentCorrectPositions.filter((position): position is number => Number.isInteger(position) && position >= 0 && position < 3).slice(-2) : [],
+        };
+      }
+    } catch { storedFacts = { seenFactIds: [], attempts: 0, correct: 0, currentStreak: 0, bestStreak: 0, recentCorrectPositions: [] }; }
+
+    if (storedTopics.includes(currentTopic.id)) {
+      const next = chooseUnseen(topicBank.topics, currentTopic.id, storedTopics);
+      if (next.item) {
+        setCurrentTopic(next.item);
+        storedTopics = next.seenIds;
+      }
+    } else {
+      storedTopics = [...storedTopics, currentTopic.id];
+    }
+    if (storedFacts.seenFactIds.includes(currentFact.id)) {
+      const next = chooseUnseen(factBank.facts as Fact[], currentFact.id, storedFacts.seenFactIds);
+      if (next.item) {
+        setCurrentFact(next.item);
+        storedFacts.seenFactIds = next.seenIds;
+        const order = createFactOptionOrder(next.item, storedFacts.recentCorrectPositions);
+        setOrderedFactOptions(order);
+        storedFacts.recentCorrectPositions = [...storedFacts.recentCorrectPositions, order.indexOf(next.item.answerIndex)].slice(-2);
+      }
+    } else {
+      storedFacts.seenFactIds = [...storedFacts.seenFactIds, currentFact.id];
+      const order = createFactOptionOrder(currentFact, storedFacts.recentCorrectPositions);
+      setOrderedFactOptions(order);
+      storedFacts.recentCorrectPositions = [...storedFacts.recentCorrectPositions, order.indexOf(currentFact.answerIndex)].slice(-2);
+    }
+    setTopicHistory(storedTopics);
+    setFactProgress(storedFacts);
+    setTopicHistoryLoaded(true);
+    setFactProgressLoaded(true);
+    // This is one-time browser hydration; the initial daily items are intentionally read once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!topicHistoryLoaded) return;
+    try { localStorage.setItem("curio-topic-history", JSON.stringify(topicHistory)); } catch { /* Storage may be disabled. */ }
+  }, [topicHistory, topicHistoryLoaded]);
+
+  useEffect(() => {
+    if (!factProgressLoaded) return;
+    try { localStorage.setItem("curio-fact-progress", JSON.stringify(factProgress)); } catch { /* Storage may be disabled. */ }
+  }, [factProgress, factProgressLoaded]);
+
   const activeCategoryName = topicBank.categories.find((category) => category.id === activeCategory)?.name;
   const savedTopics = useMemo(() => topicBank.topics.filter((topic) => savedIds.includes(topic.id)), [savedIds]);
   const filteredTopics = useMemo(() => {
@@ -89,10 +184,10 @@ export default function Home() {
 
   function chooseRandom() {
     const pool = topicBank.topics.filter((topic) => activeCategory === "all" || topic.categoryId === activeCategory);
-    const options = pool.length > 1 ? pool.filter((topic) => topic.id !== currentTopic.id) : pool;
-    const next = options[Math.floor(Math.random() * options.length)];
-    if (next) {
-      setCurrentTopic(next);
+    const selection = chooseUnseen(pool, currentTopic.id, topicHistory);
+    if (selection.item) {
+      setCurrentTopic(selection.item);
+      setTopicHistory(selection.seenIds);
       setShowAngles(false);
       setShowSaved(false);
       setShowSearch(false);
@@ -111,10 +206,17 @@ export default function Home() {
     setShowAngles(false);
     if (id !== "all") {
       const pool = topicBank.topics.filter((topic) => topic.categoryId === id);
-      const next = pool[Math.floor(Math.random() * pool.length)];
-      if (next) setCurrentTopic(next);
+      const selection = chooseUnseen(pool, currentTopic.id, topicHistory);
+      if (selection.item) {
+        setCurrentTopic(selection.item);
+        setTopicHistory(selection.seenIds);
+      }
     } else if (!topicBank.topics.some((topic) => topic.id === currentTopic.id)) {
-      setCurrentTopic(topicBank.topics[daySeed() % topicBank.topics.length]);
+      const selection = chooseUnseen(topicBank.topics, currentTopic.id, topicHistory);
+      if (selection.item) {
+        setCurrentTopic(selection.item);
+        setTopicHistory(selection.seenIds);
+      }
     }
   }
 
@@ -128,9 +230,28 @@ export default function Home() {
   }
 
   function chooseAnotherFact() {
-    const pool = factBank.facts.filter((fact) => fact.id !== currentFact.id);
-    setCurrentFact(pool[Math.floor(Math.random() * pool.length)] ?? currentFact);
+    const selection = chooseUnseen(factBank.facts as Fact[], currentFact.id, factProgress.seenFactIds);
+    if (selection.item) {
+      const order = createFactOptionOrder(selection.item, factProgress.recentCorrectPositions);
+      setCurrentFact(selection.item);
+      setOrderedFactOptions(order);
+      setFactProgress((progress) => ({ ...progress, seenFactIds: selection.seenIds, recentCorrectPositions: [...progress.recentCorrectPositions, order.indexOf(selection.item!.answerIndex)].slice(-2) }));
+    }
     setSelectedAnswer(null);
+  }
+
+  function answerFact(originalIndex: number) {
+    if (selectedAnswer !== null) return;
+    setSelectedAnswer(originalIndex);
+    setFactProgress((progress) => {
+      const correct = originalIndex === currentFact.answerIndex;
+      const currentStreak = correct ? progress.currentStreak + 1 : 0;
+      return { ...progress, attempts: progress.attempts + 1, correct: progress.correct + Number(correct), currentStreak, bestStreak: Math.max(progress.bestStreak, currentStreak) };
+    });
+  }
+
+  function resetFactProgress() {
+    setFactProgress((progress) => ({ ...progress, attempts: 0, correct: 0, currentStreak: 0, bestStreak: 0 }));
   }
 
   function toggleSaved(topic: Topic) {
@@ -149,7 +270,6 @@ export default function Home() {
   const today = new Intl.DateTimeFormat("en", { weekday: "long", month: "long", day: "numeric" }).format(new Date());
   const displayTopic = showSaved ? savedTopics[0] : currentTopic;
   const currentCategory = topicBank.categories.find((category) => category.id === displayTopic?.categoryId);
-  const orderedFactOptions = factOptionOrder(currentFact.id, currentFact.options.length);
 
   return (
     <main className="app-shell">
@@ -195,7 +315,7 @@ export default function Home() {
           {showSearch && <div className="search-wrap"><Icon name="search" size={19} /><input autoFocus value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Try “identity”, “future”, or “happiness”…" aria-label="Search topic questions" /><span>{filteredTopics.length} {filteredTopics.length === 1 ? "question" : "questions"}</span>{search && <button className="clear-search" aria-label="Clear search" onClick={() => setSearch("")}><Icon name="close" size={16} /></button>}</div>}
 
           {showFacts && <section className="facts-section" aria-labelledby="facts-title">
-            <div className="section-heading"><div><span className="section-kicker"><span className="live-dot" /> FACT SPARK</span><h2 id="facts-title">A little mystery to solve</h2></div><span className="duration"><Icon name="clock" size={15} /> 1 min</span></div>
+            <div className="section-heading"><div><span className="section-kicker"><span className="live-dot" /> FACT SPARK</span><h2 id="facts-title">A little mystery to solve</h2></div><div className="fact-score-wrap"><span className="duration"><Icon name="clock" size={15} /> 1 min</span><span className="fact-score">{factProgress.attempts ? <>{factProgress.correct}/{factProgress.attempts} right <span>·</span> streak {factProgress.currentStreak} <span>·</span> best {factProgress.bestStreak}</> : "No score yet"}</span>{factProgress.attempts > 0 && <button className="fact-reset-button" onClick={resetFactProgress}>Reset score</button>}</div></div>
             <article className="fact-card">
               <div className="fact-card-top"><span className="category-pill"><span className="pill-dot"/>{currentFact.category}</span><span className="fact-counter">{factBank.facts.length} curious facts</span></div>
               <h3 className="fact-question">{currentFact.question}</h3>
@@ -204,9 +324,9 @@ export default function Home() {
                 const answered = selectedAnswer !== null;
                 const isCorrect = originalIndex === currentFact.answerIndex;
                 const isSelected = selectedAnswer === originalIndex;
-                return <button key={option} className={`fact-option ${answered && isCorrect ? "fact-option-correct" : ""} ${answered && isSelected && !isCorrect ? "fact-option-wrong" : ""}`} disabled={answered} onClick={() => setSelectedAnswer(originalIndex)}><span className="fact-option-letter">{String.fromCharCode(65 + displayIndex)}</span><span>{option}</span>{answered && isCorrect && <Icon name="check" size={17}/>}</button>;
+                return <button key={option} className={`fact-option ${answered && isCorrect ? "fact-option-correct" : ""} ${answered && isSelected && !isCorrect ? "fact-option-wrong" : ""}`} disabled={answered || !factProgressLoaded} onClick={() => answerFact(originalIndex)}><span className="fact-option-letter">{String.fromCharCode(65 + displayIndex)}</span><span>{option}</span>{answered && isCorrect && <Icon name="check" size={17}/>}</button>;
               })}</div>
-              {selectedAnswer !== null && <div className="fact-reveal" aria-live="polite"><div className="fact-result"><Icon name={selectedAnswer === currentFact.answerIndex ? "check" : "spark"} size={16}/>{selectedAnswer === currentFact.answerIndex ? "You got it" : "Here is the surprising part"}</div><p className="fact-headline">{currentFact.fact}</p><p className="fact-explanation">{currentFact.explanation}</p><a className="fact-source" href={currentFact.source.url} target="_blank" rel="noreferrer">Source: {currentFact.source.title}<Icon name="arrow" size={14}/></a><div className="fact-wonder"><span className="fact-wonder-label"><Icon name="spark" size={14}/> KEEP WONDERING</span><p>{currentFact.wonderQuestion}</p></div></div>}
+              {selectedAnswer !== null && <div className={`fact-reveal ${currentFact.image ? "fact-reveal-with-image" : ""}`} aria-live="polite"><div className="fact-reveal-copy"><div className="fact-result"><Icon name={selectedAnswer === currentFact.answerIndex ? "check" : "spark"} size={16}/>{selectedAnswer === currentFact.answerIndex ? "You got it" : "Here is the surprising part"}</div><p className="fact-headline">{currentFact.fact}</p><p className="fact-explanation">{currentFact.explanation}</p><a className="fact-source" href={currentFact.source.url} target="_blank" rel="noreferrer">Source: {currentFact.source.title}<Icon name="arrow" size={14}/></a><div className="fact-wonder"><span className="fact-wonder-label"><Icon name="spark" size={14}/> KEEP WONDERING</span><p>{currentFact.wonderQuestion}</p></div></div>{currentFact.image && <figure className="fact-image"><img src={currentFact.image.src} alt={currentFact.image.alt} loading="lazy"/><figcaption><a href={currentFact.image.sourceUrl} target="_blank" rel="noreferrer">{currentFact.image.credit}</a><span> · </span><a href={currentFact.image.license} target="_blank" rel="noreferrer">Image source & license</a></figcaption></figure>}</div>}
               <div className="fact-footer"><span>{selectedAnswer === null ? "Trust your first guess." : "One small fact can lead somewhere unexpected."}</span><button className="generate-button" onClick={chooseAnotherFact}><Icon name="shuffle" size={16}/>{selectedAnswer === null ? "Skip this one" : "Another fact"}<span className="button-arrow"><Icon name="arrow" size={15}/></span></button></div>
             </article>
             <div className="fact-bridge"><div className="lower-note-icon"><Icon name="heart" size={18}/></div><p><strong>Want to go deeper?</strong><span>Explore a question and make the idea your own.</span></p><button onClick={() => chooseCategory("all")}>Explore prompts <Icon name="arrow" size={15}/></button></div>

@@ -9,6 +9,7 @@
       "fact": "Mars can have a blue twilight glow close to the setting Sun.",
       "explanation": "Fine dust in Mars’s thin atmosphere scatters light in a way that keeps blue light concentrated near the Sun. The rest of the sky can look more yellow or orange.",
       "source": { "title": "What Do Sunrises and Sunsets Look Like on Mars?", "url": "https://science.nasa.gov/solar-system/planets/mars/what-does-a-sunrise-sunset-look-like-on-mars/" },
+      "image": { "src": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia19/pia19401/PIA19401.jpg?crop=faces%2Cfocalpoint&fit=crop&h=855&w=1200", "alt": "Blue twilight near the horizon on Mars", "credit": "NASA/JPL-Caltech", "sourceUrl": "https://science.nasa.gov/photojournal/sunset-sequence-in-mars-gale-crater-animation/", "license": "https://www.nasa.gov/nasa-brand-center/images-and-media/" },
       "wonderQuestion": "If you could watch one sunset anywhere in the solar system, where would you go?"
     },
     {
@@ -31,6 +32,7 @@
       "fact": "Saturn is the only planet in our solar system with an average density lower than water.",
       "explanation": "That makes the familiar thought experiment true in principle: Saturn could float in a bathtub large enough to hold it. It is a gas giant with no solid surface to stand on.",
       "source": { "title": "Saturn Facts", "url": "https://science.nasa.gov/saturn/facts/" },
+      "image": { "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/CassiniPhotographMimasSaturn.jpg/960px-CassiniPhotographMimasSaturn.jpg", "alt": "Saturn and its rings with the moon Mimas nearby", "credit": "NASA / Cassini Imaging Team · Public domain", "sourceUrl": "https://commons.wikimedia.org/wiki/File:CassiniPhotographMimasSaturn.jpg", "license": "https://creativecommons.org/publicdomain/mark/1.0/" },
       "wonderQuestion": "What would a realistic bathtub big enough for a planet need to be made of?"
     },
     {
@@ -53,6 +55,7 @@
       "fact": "An octopus has three hearts.",
       "explanation": "Two hearts move blood past the gills. A third circulates oxygen-rich blood to the rest of the body, and it stops beating while the octopus swims.",
       "source": { "title": "Ten Wild Facts About Octopuses", "url": "https://www.smithsonianmag.com/science-nature/ten-wild-facts-about-octopuses-they-have-three-hearts-big-brains-and-blue-blood-7625828/" },
+      "image": { "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Common_octopus_Octopus_vulgaris_%284680378955%29.jpg/960px-Common_octopus_Octopus_vulgaris_%284680378955%29.jpg", "alt": "A common octopus resting on a reef", "credit": "Paul Asman and Jill Lenoble · CC BY 2.0", "sourceUrl": "https://commons.wikimedia.org/wiki/File:Common_octopus_Octopus_vulgaris_(4680378955).jpg", "license": "https://creativecommons.org/licenses/by/2.0/" },
       "wonderQuestion": "What might explain why an octopus prefers crawling to swimming?"
     },
     {
@@ -64,6 +67,7 @@
       "fact": "Wombats produce cube-shaped droppings.",
       "explanation": "Researchers found that different parts of a wombat’s intestine stretch unevenly, shaping the material into cubes. The shape may help the droppings stay put as scent markers.",
       "source": { "title": "Why Wombats Make Cube-Shaped Poos", "url": "https://www.smithsonianmag.com/smart-news/why-wombats-make-cube-shaped-poos-180970847/" },
+      "image": { "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Common_wombat_%28Vombatus_ursinus%29_Maria_Island.jpg/960px-Common_wombat_%28Vombatus_ursinus%29_Maria_Island.jpg", "alt": "A common wombat on Maria Island, Tasmania", "credit": "Charles J. Sharp · CC BY-SA 4.0", "sourceUrl": "https://commons.wikimedia.org/wiki/File:Common_wombat_(Vombatus_ursinus)_Maria_Island.jpg", "license": "https://creativecommons.org/licenses/by-sa/4.0/" },
       "wonderQuestion": "What useful job could an unusual body shape quietly do?"
     },
     {
@@ -186,28 +190,6 @@
       "explanation": "That extra quarter day accumulates. Adding a day every four years keeps calendar dates from drifting too far from the seasons over time.",
       "source": { "title": "Facts About Earth", "url": "https://science.nasa.gov/earth/facts/" },
       "wonderQuestion": "What would happen to birthdays and seasons if calendars ignored the leftover quarter day?"
-    },
-    {
-      "id": "mars_long_twilight",
-      "category": "Space",
-      "question": "Why can twilight linger unusually long on Mars?",
-      "options": ["High-altitude dust scatters sunlight", "Mars has two Suns", "The planet stops spinning at dusk"],
-      "answerIndex": 0,
-      "fact": "Dust high in Mars’s atmosphere can scatter sunlight around the planet’s horizon, extending twilight.",
-      "explanation": "NASA notes that the glow can remain visible for up to two hours before sunrise or after sunset, fainter as time passes.",
-      "source": { "title": "What Do Sunrises and Sunsets Look Like on Mars?", "url": "https://science.nasa.gov/solar-system/planets/mars/what-does-a-sunrise-sunset-look-like-on-mars/" },
-      "wonderQuestion": "How could a long twilight change the feeling of a day on another planet?"
-    },
-    {
-      "id": "parrotfish_reef",
-      "category": "Animals",
-      "question": "What do parrotfish scrape from coral while feeding?",
-      "options": ["Algae", "Tiny shells", "Sea water"],
-      "answerIndex": 0,
-      "fact": "Parrotfish scrape algae from reef surfaces, and grind some coral material in the process.",
-      "explanation": "The fish are after algae, but their beak-like teeth also wear down hard reef material. This process helps create sediment and sand in reef environments.",
-      "source": { "title": "How Does Sand Form?", "url": "https://oceanservice.noaa.gov/facts/sand.html" },
-      "wonderQuestion": "Can an animal reshape its habitat just by eating?"
     },
     {
       "id": "moon_receding",
@@ -504,6 +486,7 @@
       "fact": "The Chocolate Hills are limestone formations shaped by the dissolving and erosion of rock over time.",
       "explanation": "The National Museum describes them as roughly 1,260 to 1,700 rounded limestone hills. Their grass turns brown in the dry season, giving the landscape its chocolate-like name.",
       "source": { "title": "Chocolate Hills, National Museum Mobile Museum Boxes", "url": "https://weblinks.nationalmuseum.gov.ph/wp-content/uploads/2023/01/05152345/MMB_2nd_Edition.pdf" },
+      "image": { "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Chocolate_Hills_Bohol_Province.jpg/960px-Chocolate_Hills_Bohol_Province.jpg", "alt": "The rounded green hills of Bohol's Chocolate Hills", "credit": "Cid Jacobo · CC BY-SA 4.0", "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chocolate_Hills_Bohol_Province.jpg", "license": "https://creativecommons.org/licenses/by-sa/4.0/" },
       "wonderQuestion": "How can rain slowly sculpt a landscape into such a distinctive shape?"
     },
     {
@@ -515,6 +498,7 @@
       "fact": "The Philippine eagle is found only in the Philippines, on Luzon, Samar, Leyte, and Mindanao.",
       "explanation": "It is the country’s national bird and one of the world’s rarest forest eagles. Its survival depends on protecting large areas of forest habitat.",
       "source": { "title": "The Philippine Eagle", "url": "https://www.philippineeaglefoundation.org/philippine-eagle" },
+      "image": { "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Philippine_Eagle_gazing_in_Ninoy_Aquino_Parks_and_Wildlife_Center.jpg/960px-Philippine_Eagle_gazing_in_Ninoy_Aquino_Parks_and_Wildlife_Center.jpg", "alt": "A Philippine eagle at Ninoy Aquino Parks and Wildlife Center", "credit": "Jethrude Hipolito · CC BY-SA 4.0", "sourceUrl": "https://commons.wikimedia.org/wiki/File:Philippine_Eagle_gazing_in_Ninoy_Aquino_Parks_and_Wildlife_Center.jpg", "license": "https://creativecommons.org/licenses/by-sa/4.0/" },
       "wonderQuestion": "How might an animal found in only one country shape the way people care for its forests?"
     },
     {
