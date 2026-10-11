@@ -49,7 +49,11 @@ export default function Home() {
   const [toast, setToast] = useState("");
 
   useEffect(() => {
-    try { setSavedIds(JSON.parse(localStorage.getItem("curio-saved") || "[]")); } catch { setSavedIds([]); }
+    try {
+      const stored: unknown = JSON.parse(localStorage.getItem("curio-saved") || "[]");
+      const validIds = new Set(topicBank.topics.map((topic) => topic.id));
+      setSavedIds(Array.isArray(stored) ? stored.filter((id): id is string => typeof id === "string" && validIds.has(id)) : []);
+    } catch { setSavedIds([]); }
     setSavedLoaded(true);
   }, []);
 
