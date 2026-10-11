@@ -37,6 +37,17 @@ function daySeed(date = new Date()) {
   return Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
 }
 
+function factOptionOrder(id: string, count: number) {
+  const order = Array.from({ length: count }, (_, index) => index);
+  let seed = id.split("").reduce((value, character) => (value * 31 + character.charCodeAt(0)) >>> 0, 7);
+  for (let index = order.length - 1; index > 0; index -= 1) {
+    seed = (seed * 1664525 + 1013904223) >>> 0;
+    const swapIndex = seed % (index + 1);
+    [order[index], order[swapIndex]] = [order[swapIndex], order[index]];
+  }
+  return order;
+}
+
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [currentTopic, setCurrentTopic] = useState<Topic>(topicBank.topics[daySeed() % topicBank.topics.length]);
@@ -138,6 +149,7 @@ export default function Home() {
   const today = new Intl.DateTimeFormat("en", { weekday: "long", month: "long", day: "numeric" }).format(new Date());
   const displayTopic = showSaved ? savedTopics[0] : currentTopic;
   const currentCategory = topicBank.categories.find((category) => category.id === displayTopic?.categoryId);
+  const orderedFactOptions = factOptionOrder(currentFact.id, currentFact.options.length);
 
   return (
     <main className="app-shell">
@@ -187,11 +199,12 @@ export default function Home() {
             <article className="fact-card">
               <div className="fact-card-top"><span className="category-pill"><span className="pill-dot"/>{currentFact.category}</span><span className="fact-counter">{factBank.facts.length} curious facts</span></div>
               <h3 className="fact-question">{currentFact.question}</h3>
-              <div className="fact-options" role="group" aria-label="Choose your answer">{currentFact.options.map((option, index) => {
+              <div className="fact-options" role="group" aria-label="Choose your answer">{orderedFactOptions.map((originalIndex, displayIndex) => {
+                const option = currentFact.options[originalIndex];
                 const answered = selectedAnswer !== null;
-                const isCorrect = index === currentFact.answerIndex;
-                const isSelected = selectedAnswer === index;
-                return <button key={option} className={`fact-option ${answered && isCorrect ? "fact-option-correct" : ""} ${answered && isSelected && !isCorrect ? "fact-option-wrong" : ""}`} disabled={answered} onClick={() => setSelectedAnswer(index)}><span className="fact-option-letter">{String.fromCharCode(65 + index)}</span><span>{option}</span>{answered && isCorrect && <Icon name="check" size={17}/>}</button>;
+                const isCorrect = originalIndex === currentFact.answerIndex;
+                const isSelected = selectedAnswer === originalIndex;
+                return <button key={option} className={`fact-option ${answered && isCorrect ? "fact-option-correct" : ""} ${answered && isSelected && !isCorrect ? "fact-option-wrong" : ""}`} disabled={answered} onClick={() => setSelectedAnswer(originalIndex)}><span className="fact-option-letter">{String.fromCharCode(65 + displayIndex)}</span><span>{option}</span>{answered && isCorrect && <Icon name="check" size={17}/>}</button>;
               })}</div>
               {selectedAnswer !== null && <div className="fact-reveal" aria-live="polite"><div className="fact-result"><Icon name={selectedAnswer === currentFact.answerIndex ? "check" : "spark"} size={16}/>{selectedAnswer === currentFact.answerIndex ? "You got it" : "Here is the surprising part"}</div><p className="fact-headline">{currentFact.fact}</p><p className="fact-explanation">{currentFact.explanation}</p><a className="fact-source" href={currentFact.source.url} target="_blank" rel="noreferrer">Source: {currentFact.source.title}<Icon name="arrow" size={14}/></a><div className="fact-wonder"><span className="fact-wonder-label"><Icon name="spark" size={14}/> KEEP WONDERING</span><p>{currentFact.wonderQuestion}</p></div></div>}
               <div className="fact-footer"><span>{selectedAnswer === null ? "Trust your first guess." : "One small fact can lead somewhere unexpected."}</span><button className="generate-button" onClick={chooseAnotherFact}><Icon name="shuffle" size={16}/>{selectedAnswer === null ? "Skip this one" : "Another fact"}<span className="button-arrow"><Icon name="arrow" size={15}/></span></button></div>

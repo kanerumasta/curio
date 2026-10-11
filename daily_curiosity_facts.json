@@ -208,6 +208,193 @@
       "explanation": "The fish are after algae, but their beak-like teeth also wear down hard reef material. This process helps create sediment and sand in reef environments.",
       "source": { "title": "How Does Sand Form?", "url": "https://oceanservice.noaa.gov/facts/sand.html" },
       "wonderQuestion": "Can an animal reshape its habitat just by eating?"
+    },
+    {
+      "id": "moon_receding",
+      "category": "Space",
+      "question": "About how fast is the Moon moving away from Earth?",
+      "options": ["About 30 centimeters each year", "About 4 centimeters each year", "About 4 meters each year"],
+      "answerIndex": 1,
+      "fact": "The Moon is slowly drifting away from Earth by about 3.8 centimeters per year.",
+      "explanation": "The Moon's gravity raises ocean tides, and the moving tidal bulges transfer a little of Earth's rotational energy to the Moon, nudging it into a wider orbit.",
+      "source": { "title": "Tidal Locking", "url": "https://science.nasa.gov/moon/tidal-locking/" },
+      "wonderQuestion": "How can a small change repeated for millions of years reshape the solar system?"
+    },
+    {
+      "id": "uranus_sideways",
+      "category": "Space",
+      "question": "How is Uranus unusually tilted as it orbits the Sun?",
+      "options": ["It spins almost upright", "It spins nearly on its side", "It does not rotate"],
+      "answerIndex": 1,
+      "fact": "Uranus is tilted so dramatically that it appears to roll around the Sun on its side.",
+      "explanation": "Its rotation axis is tilted about 98 degrees relative to its orbit. This extreme tilt gives the planet unusually long, intense seasons.",
+      "source": { "title": "Uranus Facts", "url": "https://science.nasa.gov/uranus/facts/" },
+      "wonderQuestion": "What would seasons feel like if your world had decades of daylight followed by decades of darkness?"
+    },
+    {
+      "id": "iss_sunrises",
+      "category": "Space",
+      "question": "How many sunrises can astronauts on the ISS see in one Earth day?",
+      "options": ["About 2", "About 16", "About 48"],
+      "answerIndex": 1,
+      "fact": "The International Space Station circles Earth roughly every 90 minutes, giving its crew about 16 sunrises and sunsets each day.",
+      "explanation": "At orbital speed, the station repeatedly moves from Earth's sunlit side into its shadow and back again. The crew uses a shared time standard to keep daily schedules steady.",
+      "source": { "title": "Frequently Asked Questions: Spot The Station", "url": "https://spotthestation.nasa.gov/faq.cfm" },
+      "wonderQuestion": "Would seeing sixteen sunrises a day make time feel different to you?"
+    },
+    {
+      "id": "mercury_polar_ice",
+      "category": "Space",
+      "question": "Where has spacecraft evidence found water ice on Mercury?",
+      "options": ["In sunlit plains near the equator", "Inside permanently shadowed craters near the poles", "Floating in clouds above the planet"],
+      "answerIndex": 1,
+      "fact": "Mercury has water ice in some permanently shadowed craters near its poles.",
+      "explanation": "Although Mercury is close to the Sun, some crater floors never receive direct sunlight and stay cold enough for ice to persist.",
+      "source": { "title": "NASA Spacecraft Finds New Mercury Water Ice Evidence", "url": "https://www.jpl.nasa.gov/news/nasa-spacecraft-finds-new-mercury-water-ice-evidence/" },
+      "wonderQuestion": "What other surprising places might preserve water by staying in permanent shadow?"
+    },
+    {
+      "id": "moonquakes",
+      "category": "Space",
+      "question": "What did Apollo astronauts leave behind that detected moonquakes?",
+      "options": ["Seismometers", "Weather balloons", "A radio telescope"],
+      "answerIndex": 0,
+      "fact": "Instruments left by Apollo astronauts recorded moonquakes, including some that lasted more than ten minutes.",
+      "explanation": "Some quakes are linked to the pull of Earth's gravity; others happen as the Moon cools and contracts. Lunar quakes can last longer than many earthquakes because the Moon is dry and fractured differently from Earth.",
+      "source": { "title": "Moonquakes", "url": "https://science.nasa.gov/moon/moonquakes/" },
+      "wonderQuestion": "How might the same shaking behave differently on a dry, airless world?"
+    },
+    {
+      "id": "flamingo_pink_food",
+      "category": "Animals",
+      "question": "What gives flamingos their pink color?",
+      "options": ["Sunlight bleaching their feathers", "A pink pigment in their skin from birth", "Pigments in the food they eat"],
+      "answerIndex": 2,
+      "fact": "Flamingos get their pink color from pigments in their food.",
+      "explanation": "Carotenoids in algae and tiny crustaceans are processed by the flamingo's body and contribute to the color of its feathers.",
+      "source": { "title": "Why Are Flamingos Pink?", "url": "https://nationalzoo.si.edu/animals/news/why-are-flamingos-pink-and-other-flamingo-facts" },
+      "wonderQuestion": "What other colors in nature might come from an animal's menu?"
+    },
+    {
+      "id": "butterfly_taste_feet",
+      "category": "Animals",
+      "question": "Which body part do butterflies use to taste?",
+      "options": ["Their antennae", "Their feet", "Their wings"],
+      "answerIndex": 1,
+      "fact": "Butterflies can taste with sensors on their feet.",
+      "explanation": "When a butterfly lands on a plant, taste sensors on its feet help it assess the surface. That can help a female find a suitable plant for laying eggs.",
+      "source": { "title": "8 Reasons to Be in Awe of Pollinators", "url": "https://nationalzoo.si.edu/animals/news/8-reasons-bee-awe-pollinators" },
+      "wonderQuestion": "How would your choices change if you could taste everything you touched?"
+    },
+    {
+      "id": "dolphin_half_brain_sleep",
+      "category": "Animals",
+      "question": "How do dolphins rest while still coming up to breathe?",
+      "options": ["They rest one half of the brain at a time", "They stop needing oxygen while asleep", "They sleep only on land"],
+      "answerIndex": 0,
+      "fact": "Dolphins can sleep with one brain hemisphere resting while the other stays alert.",
+      "explanation": "This unihemispheric sleep lets them keep swimming and surface to breathe. They can also keep one eye open while the opposite side of the brain is more alert.",
+      "source": { "title": "11 Cool Facts About Whales, Dolphins, and Porpoises", "url": "https://www.fisheries.noaa.gov/feature-story/11-cool-facts-about-whales-dolphins-and-porpoises" },
+      "wonderQuestion": "What would it feel like to wake up only halfway?"
+    },
+    {
+      "id": "sea_otter_pockets",
+      "category": "Animals",
+      "question": "Where can a sea otter stash food while diving?",
+      "options": ["In its cheek pouches", "In a shell tucked under its tail", "In loose skin pockets under its forearms"],
+      "answerIndex": 2,
+      "fact": "Sea otters have loose skin pockets under their forearms where they can stash prey during a dive.",
+      "explanation": "The pockets leave an otter's paws free to keep hunting. Some otters also carry a favorite rock there to use as a tool for opening shellfish.",
+      "source": { "title": "Sea Otter", "url": "https://www.montereybayaquarium.org/animals-the-ocean/animals-a-to-z/sea-otter" },
+      "wonderQuestion": "What small feature would make your everyday tasks easier if you had it?"
+    },
+    {
+      "id": "greenland_shark_age",
+      "category": "Animals",
+      "question": "How old might some Greenland sharks be, according to scientific estimates?",
+      "options": ["A few decades", "Several centuries", "More than 10,000 years"],
+      "answerIndex": 1,
+      "fact": "Some Greenland sharks may live for several centuries; one study estimated the oldest shark examined at 272 to 512 years old.",
+      "explanation": "Those are estimates, not exact birth dates. Researchers used radiocarbon dating of proteins in the sharks' eye lenses, and the method has uncertainty.",
+      "source": { "title": "How Long Do Greenland Sharks Live?", "url": "https://oceanservice.noaa.gov/facts/greenland-shark.html" },
+      "wonderQuestion": "What could a shark alive for centuries have witnessed in the ocean?"
+    },
+    {
+      "id": "axolotl_regrowth",
+      "category": "Animals",
+      "question": "What can an axolotl regrow after an injury?",
+      "options": ["Only its tail", "Only its skin", "Limbs and several other body parts"],
+      "answerIndex": 2,
+      "fact": "Axolotls can regenerate limbs and other structures, including parts of the spinal cord and heart.",
+      "explanation": "Scientists study how these salamanders rebuild complex body parts to better understand tissue repair. Their abilities are remarkable, but they are not simply immune to injury or illness.",
+      "source": { "title": "Research Organism Superheroes: Axolotls", "url": "https://www.nigms.nih.gov/biobeat/2024/03/research-organism-superheroes-axolotls" },
+      "wonderQuestion": "What might scientists learn by comparing healing across different animals?"
+    },
+    {
+      "id": "bee_waggle_dance",
+      "category": "Animals",
+      "question": "What can a honeybee communicate with its waggle dance?",
+      "options": ["The age of the queen", "The direction and distance of a food source", "A warning that rain will arrive"],
+      "answerIndex": 1,
+      "fact": "A honeybee's waggle dance can tell other bees the direction and distance of a newly found food source.",
+      "explanation": "Scout bees return to the nest and move in a pattern that gives other workers useful information about where to forage.",
+      "source": { "title": "The Why, What, When, Where, Who, How of Pollination", "url": "https://gardens.si.edu/gardens/pollinator-garden/why-what-when-where-who-how-pollination/" },
+      "wonderQuestion": "What information would you try to encode in a dance if you could not use words?"
+    },
+    {
+      "id": "yellowstone_geysers",
+      "category": "Earth",
+      "question": "Roughly how many geysers are found in Yellowstone National Park?",
+      "options": ["About 50", "More than 500", "More than 50,000"],
+      "answerIndex": 1,
+      "fact": "Yellowstone has more than 500 geysers among its thousands of hydrothermal features.",
+      "explanation": "Geysers are rare hot springs with narrow underground passages that let pressure build until water and steam erupt. Yellowstone contains the largest concentration of active geysers on Earth.",
+      "source": { "title": "Hydrothermal Features", "url": "https://www.nps.gov/yell/learn/nature/hydrothermal-features.htm" },
+      "wonderQuestion": "What hidden underground conditions have to line up for a geyser to erupt?"
+    },
+    {
+      "id": "sequoia_fire_cones",
+      "category": "Plants",
+      "question": "How can low-intensity fires help giant sequoias reproduce?",
+      "options": ["They make the trees grow new roots overnight", "They turn the bark into seeds", "Heat helps open cones and release seeds"],
+      "answerIndex": 2,
+      "fact": "Heat from low-intensity fires can help open giant sequoia cones and release seeds.",
+      "explanation": "Fire can also clear space and expose soil where seedlings can take root. Much hotter, severe fires can damage or destroy the cones and threaten the trees instead.",
+      "source": { "title": "Giant Sequoia Lands Coalition", "url": "https://www.nps.gov/seki/learn/gslc.htm" },
+      "wonderQuestion": "How can the same force in nature help an ecosystem in one form and harm it in another?"
+    },
+    {
+      "id": "rain_square_mile",
+      "category": "Weather",
+      "question": "How much water falls on one square mile during one inch of rain?",
+      "options": ["About 17.4 million gallons", "About 17,400 gallons", "About 1,000 gallons"],
+      "answerIndex": 0,
+      "fact": "One inch of rain over one square mile amounts to about 17.4 million gallons of water.",
+      "explanation": "A thin layer spread over a large area adds up quickly. NOAA uses this example to show why even modest rainfall can move a huge volume of water through a watershed.",
+      "source": { "title": "How Much Water Is in That Cloud?", "url": "https://www.noaa.gov/jetstream/ll-h2ocontent" },
+      "wonderQuestion": "Where does all that rainwater go after it hits a city or a forest?"
+    },
+    {
+      "id": "monarch_daily_miles",
+      "category": "Animals",
+      "question": "During migration, how far can monarch butterflies travel in a day?",
+      "options": ["Up to 3 miles", "Up to 300 miles", "Up to 30 miles"],
+      "answerIndex": 2,
+      "fact": "Monarch butterflies can travel up to about 30 miles in a day during migration.",
+      "explanation": "Their long journey depends on weather, winds, and the availability of stopover habitat. Generations of monarchs take part in the broader migration cycle.",
+      "source": { "title": "The Why, What, When, Where, Who, How of Pollination", "url": "https://gardens.si.edu/gardens/pollinator-garden/why-what-when-where-who-how-pollination/" },
+      "wonderQuestion": "What would you need to plan for a journey that spans thousands of miles over several generations?"
+    },
+    {
+      "id": "yellowstone_microbe_colors",
+      "category": "Earth",
+      "question": "What can create vivid color bands around some Yellowstone hot springs?",
+      "options": ["Paint-like minerals added by people", "Heat-loving microorganisms", "Reflections from the northern lights"],
+      "answerIndex": 1,
+      "fact": "Heat-loving microorganisms can form colorful mats in Yellowstone's hydrothermal areas.",
+      "explanation": "Different microbes thrive under different conditions, and dense communities can appear as bands of color around hot water and mineral deposits.",
+      "source": { "title": "Hydrothermal Features", "url": "https://www.nps.gov/yell/learn/nature/hydrothermal-features.htm" },
+      "wonderQuestion": "What might life look like in a place that seems too extreme for anything to survive?"
     }
   ]
 }
