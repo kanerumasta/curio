@@ -1,0 +1,213 @@
+{
+  "facts": [
+    {
+      "id": "mars_blue_twilight",
+      "category": "Space",
+      "question": "What color can the sky glow near the Sun at sunset on Mars?",
+      "options": ["Blue", "Violet", "Bright green"],
+      "answerIndex": 0,
+      "fact": "Mars can have a blue twilight glow close to the setting Sun.",
+      "explanation": "Fine dust in Mars’s thin atmosphere scatters light in a way that keeps blue light concentrated near the Sun. The rest of the sky can look more yellow or orange.",
+      "source": { "title": "What Do Sunrises and Sunsets Look Like on Mars?", "url": "https://science.nasa.gov/solar-system/planets/mars/what-does-a-sunrise-sunset-look-like-on-mars/" },
+      "wonderQuestion": "If you could watch one sunset anywhere in the solar system, where would you go?"
+    },
+    {
+      "id": "venus_day_year",
+      "category": "Space",
+      "question": "Which lasts longer on Venus: one spin of the planet or one trip around the Sun?",
+      "options": ["One spin", "One trip around the Sun", "They take the same time"],
+      "answerIndex": 0,
+      "fact": "A Venus day, measured by one full spin, is longer than a Venus year.",
+      "explanation": "Venus takes about 243 Earth days to rotate once, but only about 225 Earth days to orbit the Sun. Its slow spin also makes the Sun rise in the west.",
+      "source": { "title": "Venus Facts", "url": "https://science.nasa.gov/venus/venus-facts/" },
+      "wonderQuestion": "How would calendars work if a planet’s day were longer than its year?"
+    },
+    {
+      "id": "saturn_float",
+      "category": "Space",
+      "question": "Which planet has an average density lower than water?",
+      "options": ["Saturn", "Mars", "Mercury"],
+      "answerIndex": 0,
+      "fact": "Saturn is the only planet in our solar system with an average density lower than water.",
+      "explanation": "That makes the familiar thought experiment true in principle: Saturn could float in a bathtub large enough to hold it. It is a gas giant with no solid surface to stand on.",
+      "source": { "title": "Saturn Facts", "url": "https://science.nasa.gov/saturn/facts/" },
+      "wonderQuestion": "What would a realistic bathtub big enough for a planet need to be made of?"
+    },
+    {
+      "id": "sunlight_eight_minutes",
+      "category": "Space",
+      "question": "About how long does sunlight take to reach Earth?",
+      "options": ["8 minutes", "8 seconds", "8 hours"],
+      "answerIndex": 0,
+      "fact": "Sunlight takes about 8 minutes and 20 seconds to reach Earth.",
+      "explanation": "Light travels incredibly fast, but space is so vast that even sunlight needs several minutes to cross the gap between the Sun and Earth.",
+      "source": { "title": "Facts About Earth", "url": "https://science.nasa.gov/earth/facts/" },
+      "wonderQuestion": "When you look at the Sun, what are you learning about its past?"
+    },
+    {
+      "id": "octopus_hearts",
+      "category": "Animals",
+      "question": "How many hearts does an octopus have?",
+      "options": ["Three", "One", "Eight"],
+      "answerIndex": 0,
+      "fact": "An octopus has three hearts.",
+      "explanation": "Two hearts move blood past the gills. A third circulates oxygen-rich blood to the rest of the body, and it stops beating while the octopus swims.",
+      "source": { "title": "Ten Wild Facts About Octopuses", "url": "https://www.smithsonianmag.com/science-nature/ten-wild-facts-about-octopuses-they-have-three-hearts-big-brains-and-blue-blood-7625828/" },
+      "wonderQuestion": "What might explain why an octopus prefers crawling to swimming?"
+    },
+    {
+      "id": "wombat_cubes",
+      "category": "Animals",
+      "question": "Which animal is known for producing cube-shaped droppings?",
+      "options": ["Wombat", "Beaver", "Koala"],
+      "answerIndex": 0,
+      "fact": "Wombats produce cube-shaped droppings.",
+      "explanation": "Researchers found that different parts of a wombat’s intestine stretch unevenly, shaping the material into cubes. The shape may help the droppings stay put as scent markers.",
+      "source": { "title": "Why Wombats Make Cube-Shaped Poos", "url": "https://www.smithsonianmag.com/smart-news/why-wombats-make-cube-shaped-poos-180970847/" },
+      "wonderQuestion": "What useful job could an unusual body shape quietly do?"
+    },
+    {
+      "id": "sharks_before_trees",
+      "category": "Animals",
+      "question": "Which appeared first in Earth’s history: sharks or trees?",
+      "options": ["Sharks", "Trees", "They appeared at about the same time"],
+      "answerIndex": 0,
+      "fact": "Sharks are older than the first trees.",
+      "explanation": "Shark ancestors appeared hundreds of millions of years ago. The earliest recognizable trees came later, so sharks were already in the oceans before forests existed.",
+      "source": { "title": "Respect: Sharks Are Older than Trees", "url": "https://www.smithsonianmag.com/smart-news/respect-sharks-are-older-than-trees-3818/" },
+      "wonderQuestion": "What would Earth have looked like before forests existed?"
+    },
+    {
+      "id": "parrotfish_sand",
+      "category": "Animals",
+      "question": "How do parrotfish help make some tropical beach sand?",
+      "options": ["They grind coral as they feed", "They carry tiny stones ashore", "Their scales break down in the sun"],
+      "answerIndex": 0,
+      "fact": "Parrotfish can turn bits of reef into fine white sand as they feed.",
+      "explanation": "They scrape algae from reef surfaces and also grind some of the hard calcium-carbonate material. They digest the algae and pass the crushed mineral material as sand.",
+      "source": { "title": "How Does Sand Form?", "url": "https://oceanservice.noaa.gov/facts/sand.html" },
+      "wonderQuestion": "What else in nature is made from the leftovers of another creature’s meal?"
+    },
+    {
+      "id": "camel_hump",
+      "category": "Animals",
+      "question": "What do camels store in their humps?",
+      "options": ["Fat", "Water", "Air"],
+      "answerIndex": 0,
+      "fact": "A camel’s hump stores fat, not water.",
+      "explanation": "The fat is an energy reserve. Camels conserve water in other ways, which is why the hump myth can sound plausible even though the hump itself is not a water tank.",
+      "source": { "title": "Everyday Mysteries: How Much Water Does a Camel’s Hump Hold?", "url": "https://www.loc.gov/lcm/pdf/LCM_2020_0304.pdf" },
+      "wonderQuestion": "What common belief would you most like to check against the evidence?"
+    },
+    {
+      "id": "black_eyed_peas",
+      "category": "Everyday",
+      "question": "Botanically speaking, black-eyed peas belong to which group?",
+      "options": ["Beans", "True peas", "Nuts"],
+      "answerIndex": 0,
+      "fact": "Black-eyed peas are a type of bean, specifically a cowpea.",
+      "explanation": "The everyday names for foods do not always match their botanical family. Black-eyed peas are legumes in the cowpea group.",
+      "source": { "title": "Are Black-Eyed Peas Really Peas?", "url": "https://www.loc.gov/everyday-mysteries/categories/agriculture/item/are-black-eyed-peas-really-peas/" },
+      "wonderQuestion": "Which other foods might have names that mislead us about what they are?"
+    },
+    {
+      "id": "snowflakes_alike",
+      "category": "Everyday",
+      "question": "What is the scientific consensus about two large snow crystals being identical?",
+      "options": ["It is extraordinarily unlikely", "It happens often", "They are always identical"],
+      "answerIndex": 0,
+      "fact": "It is extraordinarily unlikely for two large, complex snow crystals to be identical in both structure and appearance.",
+      "explanation": "Temperature and other conditions shift as a crystal falls, shaping its branching pattern. Very simple crystals can look alike, but matching the full structure of two large crystals is vanishingly unlikely.",
+      "source": { "title": "Is It True That No Two Snow Crystals Are Alike?", "url": "https://www.loc.gov/everyday-mysteries/categories/meteorology-climatology/item/is-it-true-that-no-two-snow-crystals-are-alike/" },
+      "wonderQuestion": "How do scientists talk carefully about a claim that is almost impossible to test completely?"
+    },
+    {
+      "id": "earth_name",
+      "category": "Everyday",
+      "question": "Earth’s English name comes mainly from which source?",
+      "options": ["Old English and Germanic words", "A Roman god", "A Greek goddess"],
+      "answerIndex": 0,
+      "fact": "Earth is the only planet whose English name does not come from Greek or Roman mythology.",
+      "explanation": "The name comes from Old English and Germanic words for ground or soil. The other planets’ English names are tied to Roman gods and goddesses.",
+      "source": { "title": "Facts About Earth", "url": "https://science.nasa.gov/earth/facts/" },
+      "wonderQuestion": "What does the name of your home planet say about how people first understood it?"
+    },
+    {
+      "id": "saturn_day",
+      "category": "Space",
+      "question": "How long is one day on Saturn?",
+      "options": ["About 10.7 Earth hours", "About 24 Earth hours", "About 29 Earth years"],
+      "answerIndex": 0,
+      "fact": "A day on Saturn lasts about 10.7 Earth hours.",
+      "explanation": "Saturn spins quickly, completing one rotation in less than half an Earth day. Its year, by contrast, lasts about 29.4 Earth years.",
+      "source": { "title": "Saturn Facts", "url": "https://science.nasa.gov/saturn/facts/" },
+      "wonderQuestion": "Would a shorter day make your daily routine feel faster or simply different?"
+    },
+    {
+      "id": "venus_west_sunrise",
+      "category": "Space",
+      "question": "On Venus, which direction does the Sun rise?",
+      "options": ["West", "East", "North"],
+      "answerIndex": 0,
+      "fact": "The Sun rises in the west on Venus.",
+      "explanation": "Venus spins backward compared with most planets, including Earth. That retrograde rotation reverses the apparent direction of sunrise and sunset.",
+      "source": { "title": "Venus Facts", "url": "https://science.nasa.gov/venus/venus-facts/" },
+      "wonderQuestion": "How much of what feels like ‘up’, ‘down’, ‘east’, or ‘west’ depends on where we stand?"
+    },
+    {
+      "id": "venus_hot",
+      "category": "Space",
+      "question": "Which planet is hotter at its surface: Mercury or Venus?",
+      "options": ["Venus", "Mercury", "They are about the same"],
+      "answerIndex": 0,
+      "fact": "Venus is hotter than Mercury, even though Mercury is closer to the Sun.",
+      "explanation": "Venus’s thick atmosphere traps heat in a powerful greenhouse effect. Its surface reaches about 467°C (872°F).",
+      "source": { "title": "Venus Facts", "url": "https://science.nasa.gov/venus/venus-facts/" },
+      "wonderQuestion": "How can an atmosphere change the temperature of an entire world?"
+    },
+    {
+      "id": "earth_seasons",
+      "category": "Everyday",
+      "question": "What mainly causes Earth’s seasons?",
+      "options": ["Earth’s tilted axis", "Earth getting much closer to the Sun in summer", "The Moon’s shadow"],
+      "answerIndex": 0,
+      "fact": "Earth’s seasons come mainly from the tilt of its axis.",
+      "explanation": "As Earth orbits the Sun, each hemisphere tilts toward or away from sunlight for part of the year. Earth is actually closest to the Sun during Northern Hemisphere winter.",
+      "source": { "title": "Facts About Earth", "url": "https://science.nasa.gov/earth/facts/" },
+      "wonderQuestion": "Why might the same month feel like a different season in another hemisphere?"
+    },
+    {
+      "id": "earth_leap_day",
+      "category": "Everyday",
+      "question": "Why do we add a leap day about every four years?",
+      "options": ["A year is about a quarter day longer than 365 days", "Earth stops rotating for one day", "The Moon adds an extra orbit"],
+      "answerIndex": 0,
+      "fact": "Earth takes about 365.25 days to orbit the Sun, so calendars add a leap day to stay aligned.",
+      "explanation": "That extra quarter day accumulates. Adding a day every four years keeps calendar dates from drifting too far from the seasons over time.",
+      "source": { "title": "Facts About Earth", "url": "https://science.nasa.gov/earth/facts/" },
+      "wonderQuestion": "What would happen to birthdays and seasons if calendars ignored the leftover quarter day?"
+    },
+    {
+      "id": "mars_long_twilight",
+      "category": "Space",
+      "question": "Why can twilight linger unusually long on Mars?",
+      "options": ["High-altitude dust scatters sunlight", "Mars has two Suns", "The planet stops spinning at dusk"],
+      "answerIndex": 0,
+      "fact": "Dust high in Mars’s atmosphere can scatter sunlight around the planet’s horizon, extending twilight.",
+      "explanation": "NASA notes that the glow can remain visible for up to two hours before sunrise or after sunset, fainter as time passes.",
+      "source": { "title": "What Do Sunrises and Sunsets Look Like on Mars?", "url": "https://science.nasa.gov/solar-system/planets/mars/what-does-a-sunrise-sunset-look-like-on-mars/" },
+      "wonderQuestion": "How could a long twilight change the feeling of a day on another planet?"
+    },
+    {
+      "id": "parrotfish_reef",
+      "category": "Animals",
+      "question": "What do parrotfish scrape from coral while feeding?",
+      "options": ["Algae", "Tiny shells", "Sea water"],
+      "answerIndex": 0,
+      "fact": "Parrotfish scrape algae from reef surfaces, and grind some coral material in the process.",
+      "explanation": "The fish are after algae, but their beak-like teeth also wear down hard reef material. This process helps create sediment and sand in reef environments.",
+      "source": { "title": "How Does Sand Form?", "url": "https://oceanservice.noaa.gov/facts/sand.html" },
+      "wonderQuestion": "Can an animal reshape its habitat just by eating?"
+    }
+  ]
+}

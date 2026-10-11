@@ -2,8 +2,10 @@
 
 import { useEffect, useMemo, useState } from "react";
 import topicBank from "../daily_curiosity_topics.json";
+import factBank from "../daily_curiosity_facts.json";
 
 type Topic = (typeof topicBank.topics)[number];
+type Fact = (typeof factBank.facts)[number];
 type IconName = "spark" | "shuffle" | "bookmark" | "search" | "arrow" | "sun" | "clock" | "copy" | "check" | "chevron" | "close" | "menu" | "all" | "heart";
 
 const iconPaths: Record<IconName, React.ReactNode> = {
@@ -47,6 +49,9 @@ export default function Home() {
   const [mobileNav, setMobileNav] = useState(false);
   const [copied, setCopied] = useState(false);
   const [toast, setToast] = useState("");
+  const [showFacts, setShowFacts] = useState(false);
+  const [currentFact, setCurrentFact] = useState<Fact>(factBank.facts[daySeed() % factBank.facts.length]);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
   useEffect(() => {
     try {
@@ -86,6 +91,7 @@ export default function Home() {
   }
 
   function chooseCategory(id: string) {
+    setShowFacts(false);
     setActiveCategory(id);
     setMobileNav(false);
     setSearch("");
@@ -99,6 +105,21 @@ export default function Home() {
     } else if (!topicBank.topics.some((topic) => topic.id === currentTopic.id)) {
       setCurrentTopic(topicBank.topics[daySeed() % topicBank.topics.length]);
     }
+  }
+
+  function openFacts() {
+    setShowFacts(true);
+    setShowSaved(false);
+    setShowSearch(false);
+    setShowAngles(false);
+    setSelectedAnswer(null);
+    setMobileNav(false);
+  }
+
+  function chooseAnotherFact() {
+    const pool = factBank.facts.filter((fact) => fact.id !== currentFact.id);
+    setCurrentFact(pool[Math.floor(Math.random() * pool.length)] ?? currentFact);
+    setSelectedAnswer(null);
   }
 
   function toggleSaved(topic: Topic) {
@@ -121,13 +142,14 @@ export default function Home() {
   return (
     <main className="app-shell">
       <aside className={`sidebar ${mobileNav ? "sidebar-open" : ""}`}>
-        <a href="#home" className="brand" onClick={() => { setShowSaved(false); setShowSearch(false); }}>
+        <a href="#home" className="brand" onClick={() => { setShowFacts(false); setShowSaved(false); setShowSearch(false); }}>
           <span className="brand-mark"><Icon name="spark" size={21} /></span><span>curio<span className="brand-period">.</span></span>
         </a>
         <div className="nav-label">YOUR SPACE</div>
         <nav className="primary-nav" aria-label="Main navigation">
-          <button className={`nav-item ${!showSaved && activeCategory === "all" ? "nav-active" : ""}`} onClick={() => chooseCategory("all")}><Icon name="all" size={17} /><span>Explore</span><span className="nav-count">{topicBank.topics.length}</span></button>
-          <button className={`nav-item ${showSaved ? "nav-active" : ""}`} onClick={() => { setShowSaved(true); setShowSearch(false); setMobileNav(false); }}><Icon name="bookmark" size={17} /><span>Saved topics</span><span className="nav-count">{savedIds.length || "—"}</span></button>
+          <button className={`nav-item ${!showFacts && !showSaved && activeCategory === "all" ? "nav-active" : ""}`} onClick={() => chooseCategory("all")}><Icon name="all" size={17} /><span>Explore</span><span className="nav-count">{topicBank.topics.length}</span></button>
+          <button className={`nav-item ${showFacts ? "nav-active" : ""}`} onClick={openFacts}><Icon name="spark" size={17} /><span>Fact Sparks</span><span className="nav-count">{factBank.facts.length}</span></button>
+          <button className={`nav-item ${showSaved ? "nav-active" : ""}`} onClick={() => { setShowFacts(false); setShowSaved(true); setShowSearch(false); setMobileNav(false); }}><Icon name="bookmark" size={17} /><span>Saved topics</span><span className="nav-count">{savedIds.length || "—"}</span></button>
         </nav>
         <div className="category-heading"><span className="nav-label">CATEGORIES</span><span className="category-total">12</span></div>
         <nav className="category-nav" aria-label="Topic categories">
@@ -144,23 +166,40 @@ export default function Home() {
       <section className="workspace" id="home">
         <header className="topbar">
           <button className="mobile-menu icon-button" aria-label="Open navigation" onClick={() => setMobileNav(true)}><Icon name="menu" size={20} /></button>
-          <div className="breadcrumb"><span>YOUR SPACE</span><span className="crumb-divider">/</span><strong>{showSaved ? "SAVED TOPICS" : showSearch ? "SEARCH" : activeCategory === "all" ? "EXPLORE" : activeCategoryName?.toUpperCase()}</strong></div>
+          <div className="breadcrumb"><span>YOUR SPACE</span><span className="crumb-divider">/</span><strong>{showFacts ? "FACT SPARKS" : showSaved ? "SAVED TOPICS" : showSearch ? "SEARCH" : activeCategory === "all" ? "EXPLORE" : activeCategoryName?.toUpperCase()}</strong></div>
           <div className="topbar-actions">
             <span className="date-label"><Icon name="sun" size={15} /> {today}</span>
-            <button className={`icon-button top-search ${showSearch ? "icon-button-selected" : ""}`} aria-label="Search topics" onClick={() => { setShowSearch((value) => !value); setShowSaved(false); setSearch(""); }}><Icon name="search" size={19} /></button>
+            <button className={`icon-button top-search ${showSearch ? "icon-button-selected" : ""}`} aria-label="Search topics" onClick={() => { setShowFacts(false); setShowSearch((value) => !value); setShowSaved(false); setSearch(""); }}><Icon name="search" size={19} /></button>
             <button className="avatar" aria-label="Curio profile">c<span>.</span></button>
           </div>
         </header>
 
         <div className="content-area">
           <div className="intro-row">
-            <div className="intro-copy"><div className="eyebrow"><span className="eyebrow-dot" /> A MOMENT FOR YOUR MIND</div><h1>{showSaved ? <>Your little<br /><span>collection.</span></> : showSearch ? <>Find a thought<br /><span>to follow.</span></> : <>Stay a little<br /><span>curious.</span></>}</h1><p>{showSaved ? "The questions you’ve kept close." : showSearch ? `Search ${topicBank.topics.length} questions and find one that stays with you.` : "One good question can take you somewhere unexpected."}</p></div>
+            <div className="intro-copy"><div className="eyebrow"><span className="eyebrow-dot" /> {showFacts ? "A QUICK SPARK OF WONDER" : "A MOMENT FOR YOUR MIND"}</div><h1>{showFacts ? <>Tiny facts.<br /><span>Big wonder.</span></> : showSaved ? <>Your little<br /><span>collection.</span></> : showSearch ? <>Find a thought<br /><span>to follow.</span></> : <>Stay a little<br /><span>curious.</span></>}</h1><p>{showFacts ? "Take a guess, uncover something surprising, then follow the question wherever it leads." : showSaved ? "The questions you’ve kept close." : showSearch ? `Search ${topicBank.topics.length} questions and find one that stays with you.` : "One good question can take you somewhere unexpected."}</p></div>
             <div className="intro-art" aria-hidden="true"><div className="art-orbit orbit-one"/><div className="art-orbit orbit-two"/><div className="art-orbit orbit-three"/><div className="art-center"><Icon name="spark" size={32} /></div><span className="art-dot dot-one"/><span className="art-dot dot-two"/><span className="art-dot dot-three"/></div>
           </div>
 
           {showSearch && <div className="search-wrap"><Icon name="search" size={19} /><input autoFocus value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Try “identity”, “future”, or “happiness”…" aria-label="Search topic questions" /><span>{filteredTopics.length} {filteredTopics.length === 1 ? "question" : "questions"}</span>{search && <button className="clear-search" aria-label="Clear search" onClick={() => setSearch("")}><Icon name="close" size={16} /></button>}</div>}
 
-          {!showSearch && !showSaved && <section className="daily-section" aria-labelledby="daily-title">
+          {showFacts && <section className="facts-section" aria-labelledby="facts-title">
+            <div className="section-heading"><div><span className="section-kicker"><span className="live-dot" /> FACT SPARK</span><h2 id="facts-title">A little mystery to solve</h2></div><span className="duration"><Icon name="clock" size={15} /> 1 min</span></div>
+            <article className="fact-card">
+              <div className="fact-card-top"><span className="category-pill"><span className="pill-dot"/>{currentFact.category}</span><span className="fact-counter">{factBank.facts.length} curious facts</span></div>
+              <h3 className="fact-question">{currentFact.question}</h3>
+              <div className="fact-options" role="group" aria-label="Choose your answer">{currentFact.options.map((option, index) => {
+                const answered = selectedAnswer !== null;
+                const isCorrect = index === currentFact.answerIndex;
+                const isSelected = selectedAnswer === index;
+                return <button key={option} className={`fact-option ${answered && isCorrect ? "fact-option-correct" : ""} ${answered && isSelected && !isCorrect ? "fact-option-wrong" : ""}`} disabled={answered} onClick={() => setSelectedAnswer(index)}><span className="fact-option-letter">{String.fromCharCode(65 + index)}</span><span>{option}</span>{answered && isCorrect && <Icon name="check" size={17}/>}</button>;
+              })}</div>
+              {selectedAnswer !== null && <div className="fact-reveal" aria-live="polite"><div className="fact-result"><Icon name={selectedAnswer === currentFact.answerIndex ? "check" : "spark"} size={16}/>{selectedAnswer === currentFact.answerIndex ? "You got it" : "Here is the surprising part"}</div><p className="fact-headline">{currentFact.fact}</p><p className="fact-explanation">{currentFact.explanation}</p><a className="fact-source" href={currentFact.source.url} target="_blank" rel="noreferrer">Source: {currentFact.source.title}<Icon name="arrow" size={14}/></a><div className="fact-wonder"><span className="fact-wonder-label"><Icon name="spark" size={14}/> KEEP WONDERING</span><p>{currentFact.wonderQuestion}</p></div></div>}
+              <div className="fact-footer"><span>{selectedAnswer === null ? "Trust your first guess." : "One small fact can lead somewhere unexpected."}</span><button className="generate-button" onClick={chooseAnotherFact}><Icon name="shuffle" size={16}/>{selectedAnswer === null ? "Skip this one" : "Another fact"}<span className="button-arrow"><Icon name="arrow" size={15}/></span></button></div>
+            </article>
+            <div className="fact-bridge"><div className="lower-note-icon"><Icon name="heart" size={18}/></div><p><strong>Want to go deeper?</strong><span>Explore a question and make the idea your own.</span></p><button onClick={() => chooseCategory("all")}>Explore prompts <Icon name="arrow" size={15}/></button></div>
+          </section>}
+
+          {!showFacts && !showSearch && !showSaved && <section className="daily-section" aria-labelledby="daily-title">
             <div className="section-heading"><div><span className="section-kicker"><span className="live-dot" /> TODAY’S PROMPT</span><h2 id="daily-title">A thought to take with you</h2></div><span className="duration"><Icon name="clock" size={15} /> 5–15 min</span></div>
             <article className="prompt-card">
               <div className="card-wash" aria-hidden="true"><span/><span/><span/></div>
@@ -176,7 +215,7 @@ export default function Home() {
 
           {showSearch && <section className="results-section"><div className="results-heading"><div><span className="section-kicker">THE CURIOSITY LIBRARY</span><h2>{search ? `Thoughts about “${search}”` : "Every good question starts somewhere."}</h2></div></div>{filteredTopics.length ? <div className="topic-list">{filteredTopics.slice(0, 20).map((topic) => {const category=topicBank.categories.find(c=>c.id===topic.categoryId); return <button className="topic-row" key={topic.id} onClick={()=>{setCurrentTopic(topic);setShowSearch(false);setShowAngles(false);}}><span className="topic-row-glyph">{categoryIcons[topic.categoryId]}</span><span className="topic-row-copy"><span>{category?.name}</span><strong>{topic.question}</strong></span><Icon name="arrow" size={17}/></button>;})}</div>:<div className="empty-state"><span className="empty-icon"><Icon name="search" size={21}/></span><h3>No thoughts found (yet).</h3><p>Try a different word, or wander through a category.</p><button onClick={()=>setSearch("")}>Clear search <Icon name="arrow" size={15}/></button></div>}</section>}
 
-          {!showSearch && !showSaved && <section className="lower-note"><div className="lower-note-icon"><Icon name="heart" size={19}/></div><p><strong>There’s no right answer.</strong><span>Just your answer, and the fun of finding it.</span></p><span className="lower-note-flower">✳</span></section>}
+          {!showFacts && !showSearch && !showSaved && <section className="lower-note"><div className="lower-note-icon"><Icon name="heart" size={19}/></div><p><strong>There’s no right answer.</strong><span>Just your answer, and the fun of finding it.</span></p><span className="lower-note-flower">✳</span></section>}
           <footer className="page-footer"><span>MADE FOR THE WONDERFULLY CURIOUS</span><span>ONE QUESTION AT A TIME <i>✳</i></span></footer>
         </div>
       </section>
