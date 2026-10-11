@@ -395,6 +395,138 @@
       "explanation": "Different microbes thrive under different conditions, and dense communities can appear as bands of color around hot water and mineral deposits.",
       "source": { "title": "Hydrothermal Features", "url": "https://www.nps.gov/yell/learn/nature/hydrothermal-features.htm" },
       "wonderQuestion": "What might life look like in a place that seems too extreme for anything to survive?"
+    },
+    {
+      "id": "philippines_independence_window",
+      "category": "Philippine History",
+      "question": "From where was Philippine independence proclaimed on June 12, 1898?",
+      "options": ["A ship in Manila Bay", "The center window of the Aguinaldo family home in Kawit", "The steps of Barasoain Church"],
+      "answerIndex": 1,
+      "fact": "The proclamation of Philippine independence was read from the center window of the Aguinaldo home in Kawit, Cavite.",
+      "explanation": "Ambrosio Rianzares Bautista read the Act of the Proclamation there on June 12, 1898, as the Philippine flag was unfurled and the Marcha Nacional Filipina was played.",
+      "source": { "title": "Site of the Proclamation of Philippine Independence", "url": "https://philhistoricsites.nhcp.gov.ph/registry_database/site-of-the-proclamation-of-philippine-independence/" },
+      "wonderQuestion": "What details can turn a place into a powerful symbol for a whole country?"
+    },
+    {
+      "id": "philippine_flag_makers",
+      "category": "Philippine History",
+      "question": "Who sewed the first Philippine flag in Hong Kong?",
+      "options": ["Gregoria de Jesus and Teresa Magbanua", "Marcela Agoncillo, with Lorenza Agoncillo and Delfina Herbosa de Natividad", "Melchora Aquino and Gabriela Silang"],
+      "answerIndex": 1,
+      "fact": "Marcela Agoncillo sewed the Philippine flag in Hong Kong with help from her daughter Lorenza and Delfina Herbosa de Natividad.",
+      "explanation": "Emilio Aguinaldo conceived the flag’s design. The flag was first displayed at the Battle of Alapan in May 1898, then unfurled during the independence proclamation in Kawit that June.",
+      "source": { "title": "The Philippine National Flag", "url": "https://philhistoricsites.nhcp.gov.ph/registry_database/the-philippine-national-flag/" },
+      "wonderQuestion": "What stories might a handmade object carry as it travels through history?"
+    },
+    {
+      "id": "marcha_nacional_filipina",
+      "category": "Philippine History",
+      "question": "What was the original title of the music now known as the Philippine national anthem?",
+      "options": ["Bayan Ko", "Marcha Nacional Filipina", "Lupang Hinirang"],
+      "answerIndex": 1,
+      "fact": "Julian Felipe composed the Marcha Nacional Filipina in 1898; it was played during the independence proclamation.",
+      "explanation": "The music came first. The lyrics were written later, and the anthem is now known as Lupang Hinirang.",
+      "source": { "title": "Julian Felipe", "url": "https://philhistoricsites.nhcp.gov.ph/registry_database/julian-felipe/" },
+      "wonderQuestion": "Why do you think music can make a historic moment feel shared?"
+    },
+    {
+      "id": "malolos_constitution_asia",
+      "category": "Philippine History",
+      "question": "What distinction does the Malolos Constitution hold, according to the Philippine Official Gazette?",
+      "options": ["It was the first written constitution in the world", "It was the first republican constitution in Asia", "It created the first elected city council in Asia"],
+      "answerIndex": 1,
+      "fact": "The 1899 Malolos Constitution was the first republican constitution in Asia.",
+      "explanation": "It was drafted and adopted by the First Philippine Republic. The Malolos Congress met at Barasoain Church in Bulacan.",
+      "source": { "title": "Constitution Day: Evolution of the Philippine Constitution", "url": "https://officialgazette.gov.ph/constitutions/constitution-day/" },
+      "wonderQuestion": "What ideas should a new constitution try to protect during a time of change?"
+    },
+    {
+      "id": "gabriela_silang_revolt",
+      "category": "Philippine History",
+      "question": "What made Gabriela Silang a notable leader in the 1763 Ilocos revolt?",
+      "options": ["She continued leading the uprising after Diego Silang was killed", "She founded the first Filipino newspaper", "She negotiated the 1898 independence proclamation"],
+      "answerIndex": 0,
+      "fact": "After Diego Silang was assassinated, Gabriela Silang continued leading the revolt against Spanish rule.",
+      "explanation": "The NHCP identifies her as the first woman to lead a revolt in the Philippines. She was captured and executed in 1763.",
+      "source": { "title": "Maria Josefa Gabriela Silang, 1723–1763", "url": "https://philhistoricsites.nhcp.gov.ph/registry_database/maria-josefa-gabriela-silang-1723-1763/" },
+      "wonderQuestion": "What does it take to keep a movement going after its original leader is gone?"
+    },
+    {
+      "id": "laguna_copperplate_date",
+      "category": "Philippine History",
+      "question": "What year does the Laguna Copperplate Inscription’s date correspond to?",
+      "options": ["900 CE", "1200 CE", "1521 CE"],
+      "answerIndex": 0,
+      "fact": "The Laguna Copperplate Inscription is dated to 900 CE.",
+      "explanation": "The thin copper document is written in an early Kawi script. Its text points to connections between communities in the Philippines and neighboring parts of Southeast Asia nearly 600 years before Magellan’s expedition arrived.",
+      "source": { "title": "9th to 10th Century Archaeological Evidence of Maritime Relations", "url": "https://www.nationalmuseum.gov.ph/2022/09/20/the-9th-to-10th-century-archaeological-evidence-of-maritime-relations-between-the-philippines-and-the-islands-of-southeast-asia/" },
+      "wonderQuestion": "What might a short written record reveal about everyday life a thousand years ago?"
+    },
+    {
+      "id": "butuan_boats_age",
+      "category": "Philippine History",
+      "question": "How old are the oldest known watercraft found in the Philippines, the Butuan boats?",
+      "options": ["From the late 8th to early 10th century", "From the 16th century", "From the 19th century"],
+      "answerIndex": 0,
+      "fact": "The Butuan boats were built between the late 8th and early 10th centuries.",
+      "explanation": "These lashed-lug boats are evidence of sophisticated boatbuilding and the Philippines’ long maritime connections with other parts of Southeast Asia.",
+      "source": { "title": "9th to 10th Century Archaeological Evidence of Maritime Relations", "url": "https://www.nationalmuseum.gov.ph/2022/09/20/the-9th-to-10th-century-archaeological-evidence-of-maritime-relations-between-the-philippines-and-the-islands-of-southeast-asia/" },
+      "wonderQuestion": "What skills would a community need to build a boat that could travel between islands?"
+    },
+    {
+      "id": "lapulapu_mactan",
+      "category": "Philippine History",
+      "question": "What happened to Ferdinand Magellan at Mactan in 1521?",
+      "options": ["He led a peace treaty", "He was killed in a battle led by Lapulapu", "He founded the first Spanish settlement"],
+      "answerIndex": 1,
+      "fact": "Lapulapu led Mactan’s defense against Magellan’s forces, and Magellan was killed in the battle on April 27, 1521.",
+      "explanation": "The NHCP marker describes Lapulapu as one of Mactan’s leaders who resisted Magellan’s intervention in local leadership. The event is remembered from the Philippine side as a defense of Mactan’s independence.",
+      "source": { "title": "Lapulapu", "url": "https://philhistoricsites.nhcp.gov.ph/registry_database/lapulapu-2/" },
+      "wonderQuestion": "How can the same encounter look different when told from different sides?"
+    },
+    {
+      "id": "victoria_circumnavigation",
+      "category": "Philippine History",
+      "question": "Which ship completed the first circumnavigation of Earth after leaving Cebu in 1521?",
+      "options": ["Trinidad", "Victoria", "San Antonio"],
+      "answerIndex": 1,
+      "fact": "The Victoria, commanded by Juan Sebastián Elcano, completed the first circumnavigation of Earth in 1522.",
+      "explanation": "The ship sailed from Cebu in May 1521 and reached Sanlúcar de Barrameda in Spain in September 1522. Magellan had died at Mactan before the voyage was completed.",
+      "source": { "title": "Ferdinand Magellan’s Death", "url": "https://philhistoricsites.nhcp.gov.ph/registry_database/ferdinand-magellans-death/" },
+      "wonderQuestion": "What would you want to know about the crew’s life aboard ship during that long voyage?"
+    },
+    {
+      "id": "chocolate_hills_limestone",
+      "category": "Philippines",
+      "question": "What are the Chocolate Hills of Bohol mainly made of?",
+      "options": ["Limestone shaped over time by water", "Ancient volcano cones", "Artificial mounds built as lookout points"],
+      "answerIndex": 0,
+      "fact": "The Chocolate Hills are limestone formations shaped by the dissolving and erosion of rock over time.",
+      "explanation": "The National Museum describes them as roughly 1,260 to 1,700 rounded limestone hills. Their grass turns brown in the dry season, giving the landscape its chocolate-like name.",
+      "source": { "title": "Chocolate Hills, National Museum Mobile Museum Boxes", "url": "https://weblinks.nationalmuseum.gov.ph/wp-content/uploads/2023/01/05152345/MMB_2nd_Edition.pdf" },
+      "wonderQuestion": "How can rain slowly sculpt a landscape into such a distinctive shape?"
+    },
+    {
+      "id": "philippine_eagle_range",
+      "category": "Philippines",
+      "question": "Where does the Philippine eagle naturally live?",
+      "options": ["Only on Mindanao", "In forests on four Philippine islands", "Across Southeast Asia"],
+      "answerIndex": 1,
+      "fact": "The Philippine eagle is found only in the Philippines, on Luzon, Samar, Leyte, and Mindanao.",
+      "explanation": "It is the country’s national bird and one of the world’s rarest forest eagles. Its survival depends on protecting large areas of forest habitat.",
+      "source": { "title": "The Philippine Eagle", "url": "https://www.philippineeaglefoundation.org/philippine-eagle" },
+      "wonderQuestion": "How might an animal found in only one country shape the way people care for its forests?"
+    },
+    {
+      "id": "pinatubo_eruption_rank",
+      "category": "Philippines",
+      "question": "How was the 1991 Mount Pinatubo eruption ranked among 20th-century eruptions?",
+      "options": ["The largest", "The second largest", "The tenth largest"],
+      "answerIndex": 1,
+      "fact": "The National Museum describes Mount Pinatubo’s 1991 eruption as the second largest eruption of the 20th century.",
+      "explanation": "The eruption sent ash and gas high into the atmosphere and reshaped the surrounding landscape. Its effects were felt far beyond the volcano itself.",
+      "source": { "title": "Natural History Museum Gallery II: Geology of the Philippines", "url": "https://www.nationalmuseum.gov.ph/exhibitions/natural-history/gallery-2/" },
+      "wonderQuestion": "How can an eruption change weather and landscapes far from the volcano?"
     }
   ]
 }
